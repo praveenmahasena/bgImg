@@ -1,9 +1,37 @@
 package files
 
 import (
+	"errors"
+	"fmt"
+	"os"
 )
 
-func PathExists()(string,error){
+func ReadDir() error {
+	path, pathErr := getPath()
 
-	return "",nil
+	if pathErr != nil {
+		return pathErr
+	}
+
+	files, fileErr := os.ReadDir(path)
+
+	if fileErr != nil {
+		return errors.New("Error during Navigating to the dir you provided make sure the Dir exists")
+	}
+
+	imgFile, err := selectFunc(files)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(imgFile)
+
+	return nil
+}
+
+func getPath() (string, error) {
+	if len(os.Args) >= 2 {
+		return os.Args[1], nil
+	}
+	return "", fmt.Errorf("Error : did not provide proper absulote path to your background image dir")
 }
