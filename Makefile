@@ -21,7 +21,7 @@ staticcheck: staticcheck_bin
 	bin/staticcheck ./...
 
 staticcheck_bin:
-	GOBIN=${ROOT_DIR}/bin go install honnef.co/go/tools/cmd/staticcheck
+	GOBIN=${ROOT_DIR}/bin go install honnef.co/go/tools/cmd/staticcheck@latest
 
 
 
@@ -29,14 +29,17 @@ shadow: shadow_bin
 	bin/shadow ./...
 
 shadow_bin:
-	GOBIN=${ROOT_DIR}/bin go install golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow
+	GOBIN=${ROOT_DIR}/bin go install golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@latest
 
-package: server
+package: bgImg
 
-package_race: server_race
+package_race: bgImg_race
 
-server:
-	go build -o ./bin/server .
+bgImg:
+	go build -o ./bin/bgImg ./cmd/bgImg/
 
-server_race:
-	go build --race -o ./bin/server_race .
+bgImg_race:
+	go build --race -o ./bin/bgImg_race ./cmd/bgImg/
+
+run:
+	go run ./cmd/bgImg/

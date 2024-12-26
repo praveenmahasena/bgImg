@@ -1,7 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
 
-func main(){
-fmt.Println("fmt mf")
+	"github.com/praveenmahasena/goImg/internal"
+)
+
+func main() {
+	if err := internal.Start(); err != nil {
+		fmt.Fprint(os.Stderr, err)
+		os.Exit(-1)
+	}
 }
