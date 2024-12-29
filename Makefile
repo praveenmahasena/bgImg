@@ -31,15 +31,15 @@ shadow: shadow_bin
 shadow_bin:
 	GOBIN=${ROOT_DIR}/bin go install golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@latest
 
-package: bgImg
+package: bgimg
 
-package_race: bgImg_race
+package_race: bgimg_race
 
-bgImg:
-	go build -o ./bin/bgImg ./cmd/bgImg/
+bgimg:
+	go build -o ./bin/bgImg ./cmd/bgimg/
 
-bgImg_race:
-	go build --race -o ./bin/bgImg_race ./cmd/bgImg/
+bgimg_race:
+	go build --race -o ./bin/bgImg_race ./cmd/bgimg/
 
 run:
 	go run ./cmd/bgImg/
